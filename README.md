@@ -90,3 +90,5 @@ arkA exists to restore human sovereignty over video,
 while building a healthier digital future for creators, children,  
 and communities worldwide.
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Project Status: Phase 0](https://img.shields.io/badge/Status-Phase%200-yellow.svg)](#)
