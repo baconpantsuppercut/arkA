@@ -1,120 +1,85 @@
-# Arka Roadmap
+# arkA Roadmap
 
-This roadmap outlines the phases of development for the Arka ecosystem.
-
-The project is currently in **Phase 0**.
+arkA evolves through phases. Each phase expands the ecosystem while preserving freedom, simplicity, and openness.
 
 ---
 
 ## Phase 0 — Documentation & Alignment (NOW)
 
-Goals:
-- Define purpose, manifesto, and vision.
-- Establish folder structures and project layout.
-- Create first GitHub Discussions.
-- Create first GitHub Issues.
-- Draft core protocols and schemas (Video object, index format).
-- Publish roadmap and architecture docs.
+- Define purpose, values, manifesto  
+- Establish repository structure  
+- Draft first schemas  
+- Open Discussions  
+- Create first Issues  
+- Build written consensus
 
-No code required.  
-No hosting required.
-
-Status: **In progress.**
+Status: **In progress**
 
 ---
 
-## Phase 1 — MVP Prototype (Static)  
-(Aim: get something working in a browser.)
+## Phase 1 — MVP (Minimal Working Example)
 
-Goals:
-- A simple JSON-based video index.
-- A minimal “Arka Play” web client that:
-  - loads the JSON index
-  - displays videos
-  - streams from IPFS or HTTP
-- No backend services.
-- No authentication.
-- No payments.
-- Documentation describing how to modify the index.
+- Define the Video schema  
+- Define the Index schema  
+- Build arka-play MVP client  
+- Fetch JSON index  
+- Display videos  
+- Play IPFS/HTTP streams  
+- Host client on GitHub Pages  
 
-This phase demonstrates the concept publicly.
-
-Expected deliverables:
-- `protocol/video.schema.json`
-- `protocol/index.schema.json`
-- `frontend/arka-play/index.html`
-- sample `index.json`
+No backend.  
+No accounts.  
+No payments.
 
 ---
 
-## Phase 2 — Basic Services (Optional, Minimal)
+## Phase 2 — Protocol Expansion
 
-Goals:
-- Introduce small backend components:
-  - index/caching service
-  - creator management
-  - simple analytics (views)
-- Optional: basic upload flow using IPFS or a gateway.
-- Publish early SDKs or client helpers.
-
-Focus: still simplicity.  
-Avoid complexity until the community grows.
+- Versioned schemas  
+- Discovery improvements  
+- Categorization and tagging  
+- Optional authenticated creators  
+- Optional simple backend helpers
 
 ---
 
 ## Phase 3 — Multi-Client Ecosystem
 
-Goals:
-- Begin Arka Kids prototype.
-- Optional: Arka TV app (Roku/AndroidTV/FireTV).
-- Customizable client profiles.
-- Advanced filtering (safe mode, sensory mode).
-- Better metadata and tagging.
-
-This expands Arka into a true multi-experience system.
+- arka-kids prototype  
+- Smart filtering  
+- Sensory modes  
+- Learning mode  
+- TV App prototypes (Roku / Android TV / Apple TV)
 
 ---
 
-## Phase 4 — Creator Monetization
+## Phase 4 — Monetization Layer
 
-Possible additions:
-- Tips/donations
-- Subscriptions
-- Pay-per-view
-- Transparent revenue flows
-- Creator dashboards
-- Payout mechanisms
-
-Not required early.  
-Will emerge naturally once community grows.
+- Tips  
+- Memberships  
+- Pay-per-view  
+- Transparent creator-first revenue splits  
+- Creator dashboard
 
 ---
 
-## Phase 5 — Governance & Foundations
+## Phase 5 — Governance & Foundation
 
-Tasks:
-- Establish Arka governance model.
-- Open protocol versioning process.
-- Trademarking the Arka name (optional).
-- Foundation or DAO-like entity (only if beneficial).
-
----
-
-## Phase 6 — Hardware Exploration (Long-term)
-
-Research:
-- Special-needs-friendly tablet.
-- Rugged child-safe device.
-- Kiosk modes.
-- Parent management dashboards.
-
-Hardware is a “bonus track” that may spawn a dedicated team.
+- Contributor roles  
+- Maintainer processes  
+- Versioning policies  
+- Optional non-profit foundation  
+- Trademarks (if needed)
 
 ---
 
-## Status Summary
-- **Phase 0:** Active  
-- **Phase 1:** Ready for contributors  
-- **Phase 2–6:** Future, shaped by community
+## Phase 6 — Hardware Exploration
 
-If you want to participate, join the Discussions or pick an Issue.
+- arkA Device  
+- Rugged, child-friendly tablet  
+- Special-needs accessibility hardware  
+- Locked kiosk mode  
+
+This phase is long-term and optional.
+
+---
