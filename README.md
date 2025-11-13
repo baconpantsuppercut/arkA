@@ -1,100 +1,92 @@
-# Arka
+# arkA — The Open Video Protocol
 
-> Status: Early concept & documentation phase.  
-> There is no production code yet. We are currently shaping the protocol and architecture in the open.
+**arkA** is an open, community-driven protocol for publishing, discovering, and
+viewing video content without centralized control, censorship, or platform lock-in.
 
-**Arka** is an open, decentralized video ecosystem:
+arkA is not a platform.  
+arkA is not a company.  
+arkA is a **protocol** and an **ecosystem** that anyone can participate in.
 
-- A protocol for storing and indexing video (and other media) in a censorship-resistant way.
-- A set of reference front-ends (like a new, open “YouTube”) that read from that protocol.
-- A foundation for safe, AI-guided, kid-friendly and neurodiverse-specific video experiences.
-- A way for creators to monetize directly without being at the mercy of a single company.
+The goals of arkA are:
 
-Arka is **not** a corporation or a walled garden.  
-It is an open-source project and a public infrastructure idea.
+- **Free expression** without corporate censorship  
+- **Creator ownership** of content, identity, audience, and revenue  
+- **Open clients** (web, mobile, child-friendly, special-needs-friendly)  
+- **Decentralized storage** (IPFS, Arweave, local hosting, any backend)  
+- **Interoperability** via open schemas  
+- **A safe, guided child mode** (arkA Kids)  
+- **Hardware exploration** for special-needs accessibility  
+- **A protocol that no single entity can capture or own**
 
----
-
-## Why Arka exists
-
-Today, creators are self-censoring, dodging AI moderation, and bending their language to survive on existing platforms.
-
-Kids are zoning out into algorithmic junk, especially on YouTube-style apps.  
-Parents hand over iPads because they’re exhausted, and the content pipeline is not designed in the child’s best interest.
-
-At the same time, governments and large platforms can quietly throttle or erase voices and stories.
-
-Arka’s goals:
-
-- **True expression** within the bounds of the law, not the whims of a platform.
-- **Creator sovereignty**: creators own their relationship with their audience and can earn directly.
-- **Child-safe front-ends** that use AI to teach and support, not overstimulate and addict.
-- **Decentralized storage** for an “indestructible master copy” of media.
-- **Multiple front-ends** built on one shared protocol, each with its own logic, audience, and vibe.
+arkA begins as simple documentation and grows through the hands of contributors.
 
 ---
 
-## High-level architecture
+## 🌱 Project Status
 
-Arka has three main layers:
+arkA is currently in **Phase 0 — Documentation & Alignment**.
 
-1. **Decentralized storage layer**  
-   - “Master copy” of media on networks like IPFS / Filecoin / Arweave.  
-   - Cheap, resilient, censorship-resistant.
+We are defining:
 
-2. **Streaming / CDN layer**  
-   - Fast, TV-friendly playback using traditional CDNs.  
-   - Paid for by the apps / platforms that choose to use it.
+- the manifesto  
+- the MVP  
+- the core Video JSON schema  
+- the index format  
+- the initial roadmap  
+- early client prototypes  
 
-3. **Front-ends**  
-   - `arka-play`: main “YouTube-like” reference client.  
-   - `arka-kids`: neurodiverse- and child-focused client with AI-guided, structured sessions.  
-   - Future clients: education-only, research, niche communities, etc.
-
-All front-ends read from the same underlying protocol.
+The project is open for discussion and contributions.
 
 ---
 
-## Repos & directories (quick tour)
+## 📚 Key Documents
 
-- `docs/` – Vision, manifesto, roadmap, FAQ.
-- `protocol/` – Specification of the Arka protocol (how content, creators, and front-ends talk).
-- `frontend/` – Reference implementations like **Arka Play** and **Arka Kids**.
-- `backend/` – Service architecture for indices, APIs, and gateways (once implemented).
-- `hardware/` – Concepts for a special-needs-friendly, rugged, preconfigured tablet.
-- `governance/` – How this project is stewarded and how decisions are made.
-- `community/` – How to get involved, use-cases, and idea dumping ground.
+- [Manifesto](docs/manifesto.md)
+- [Roadmap](docs/roadmap.md)
+- [MVP](docs/mvp.md)
+- [Architecture Overview](docs/architecture.md) *(coming soon)*
+- [Protocol](protocol/README.md)
 
 ---
 
-## Status
+## 🧩 Repository Structure
+arka/ (root)
+docs/ Documentation, vision, roadmap
+protocol/ Schemas & open formats
+frontend/ Reference arkA clients
+arka-play/ General-purpose web client (MVP)
+arka-kids/ Child-friendly & neurodiverse-friendly client
+backend/ Optional future backend services
+community/ Community docs and outreach materials
+governance/ Decision-making & contribution guidelines
+hardware/ Potential future arkA device concepts
 
-Right now, Arka is in the **idea & documentation** phase.
+---
 
-The goals of this repository at this stage are:
+## 🤝 How to Contribute
 
-1. Capture the **vision** and **motivation** clearly.
-2. Define the **protocol** at a high level.
-3. Sketch out the **reference front-ends**, especially:
-   - an open, free-speech video app
-   - a safe, structured, AI-assisted kids app
-4. Invite **builders, designers, educators, creators, and parents** to comment and contribute.
+1. Read the [Manifesto](docs/manifesto.md)  
+2. Explore active [Discussions](../../discussions)  
+3. Check open [Issues](../../issues)  
+4. Comment, propose, design, or create a PR  
+5. Join the early architecture conversations  
+
+There is **no required skill level**.  
+Writers, designers, developers, researchers, parents, and educators are welcome.
 
 ---
 
-## How to get involved
+## 🔒 License
 
-- Read `docs/manifesto.md` and `docs/vision.md`.
-- Open issues with questions, critiques, or ideas.
-- Propose improvements to the protocol in `protocol/specification.md`.
-- Suggest UX flows for `frontend/arka-play` or `frontend/arka-kids`.
-- Share this repo with people who care about:
-  - digital freedom
-  - creator economy
-  - neurodiverse-friendly tech
-  - decentralized infrastructure
+See [LICENSE](LICENSE).
 
-This is a seed.  
-If it resonates with you, help it grow.
+arkA is open-source and may be forked, remixed, and extended under the terms specified.
 
 ---
+
+## ✨ Vision Statement
+
+arkA exists to restore human sovereignty over video,  
+while building a healthier digital future for creators, children,  
+and communities worldwide.
+
