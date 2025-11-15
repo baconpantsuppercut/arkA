@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "arkA Video Metadata Schema",
+  "description": "Core metadata structure for arkA protocol v0.1",
+  "type": "object",
+
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "A globally unique identifier for this video (UUID or ULID recommended)."
+    },
+
+    "title": {
+      "type": "string",
+      "description": "Human-readable video title."
+    },
+
+    "description": {
+      "type": "string",
+      "description": "Long-form description or summary."
+    },
+
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO timestamp for when the video was originally created."
+    },
+
+    "thumbnail": {
+      "type": "string",
+      "description": "URL pointing to a static thumbnail file."
+    },
+
+    "durationSeconds": {
+      "type": "number",
+      "description": "Total duration in seconds."
+    },
+
+    "sources": {
+      "type": "array",
+      "description": "Where the actual video data is stored.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "storageType": {
+            "type": "string",
+            "enum": ["s3", "r2", "ipfs", "arweave", "http", "local"],
+            "description": "Type of backend storage."
+          },
+          "uri": {
+            "type": "string",
+            "description": "Direct URI or reference pointer."
+          }
+        },
+        "required": ["storageType", "uri"]
+      }
+    },
+
+    "streaming": {
+      "type": "object",
+      "description": "Optional segmented streaming formats.",
+      "properties": {
+        "hls": { "type": "string" },
+        "dash": { "type": "string" },
+        "cmaf": { "type": "string" }
+      }
+    },
+
+    "creator": {
+      "type": "object",
+      "description": "Creator identity block.",
+      "properties": {
+        "name": { "type": "string" },
+        "avatar": { "type": "string" },
+        "contact": { "type": "string" }
+      }
+    },
+
+    "safety": {
+      "type": "object",
+      "description": "Child-safety and neurodiversity metadata.",
+      "properties": {
+        "rating": {
+          "type": "string",
+          "enum": ["G", "PG", "13+", "18+"]
+        },
+        "overstimulation": {
+          "type": "string",
+          "enum": ["low", "medium", "high"]
+        },
+        "sensoryNotes": {
+          "type": "string",
+          "description": "Notes for neurodiverse children (flashing lights, loud sounds, chaos elements)."
+        }
+      }
+    }
+  },
+
+  "required": ["id", "title", "sources"]
+}
