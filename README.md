@@ -1,141 +1,130 @@
 # arkA — The Open Video Protocol
 
-**arkA** is an open, community-driven protocol for publishing, discovering, and  
-viewing video content without centralized control, censorship, or platform lock-in.
+arkA is an open, community-driven protocol for publishing, discovering, and viewing video content without centralized control, censorship, or platform lock-in.
 
-arkA is not a platform.  
-arkA is not a company.  
-arkA is a **protocol** and an **ecosystem** anyone can build clients and services on.
+arkA is **not a platform**.  
+arkA is **not a startup**.  
+arkA is an **open protocol** that anyone can build on.
 
-Its goals:
+The goals of arkA:
 
-- **Free expression** without corporate censorship  
-- **Creator ownership** of identity, content, and audience  
-- **Open clients** (web, mobile, special-needs-friendly, child-safe)  
-- **Decentralized storage** (IPFS, Arweave, S3, R2, local hosting)  
-- **Interoperability** via open schemas  
-- **Safe guided mode for children & neurodiverse users**  
-- **Future hardware exploration** for accessibility  
-- **A protocol that no entity can capture or own**
+- Free expression without corporate gatekeeping  
+- Creator ownership of content, identity, audience, and revenue  
+- Open clients (web, mobile, accessible/special-needs-friendly)  
+- Decentralized storage support (IPFS, Arweave, S3, R2, local, etc.)  
+- A universal, open metadata and indexing schema  
+- Optional safety layers, including arkA Kids (guided & neurodiverse-friendly)  
+- Exploratory hardware for safe, controlled digital environments for children  
+- A protocol no single entity can capture  
 
----
-
-## 🌱 Project Status — Phase 0
-
-arkA is currently defining:
-
-- the manifesto  
-- the MVP  
-- the core Video JSON schema  
-- the index format  
-- the initial roadmap  
-- early reference clients (HTML/JS)
-
-The project is open for discussion and contributions.
+arkA begins as documentation and evolves through contributors.
 
 ---
 
-## 📚 Key Documents
+## Project Status: Phase 0
 
-- [Manifesto](docs/manifesto.md)  
-- [Roadmap](docs/roadmap.md)  
-- [MVP](docs/mvp.md)  
-- [Protocol Overview](protocol/README.md)  
-- Architecture Overview *(coming soon)*  
+arkA is currently defining the foundations:
+
+- The Manifesto  
+- The MVP  
+- The Video JSON schema  
+- The Index format  
+- Architecture drafts  
+- First reference clients  
+- Tooling, validators, and test vectors  
+
+The project is open to contributors at **all skill levels**.
 
 ---
 
-## 📁 Repository Structure
+## Key Documents
+
+- **Manifesto** — `docs/manifesto.md`  
+- **Roadmap** — `docs/roadmap.md`  
+- **MVP** — `docs/mvp.md`  
+- **Architecture Overview** — *(coming soon)*  
+- **Protocol Specification** — `protocol/README.md`  
+
+---
+
+## Repository Structure
 
 ```
-arka/                 Root of the project
-├── docs/             Documentation, vision, roadmap
-├── protocol/         Schemas & open formats
-├── frontend/         Reference arkA clients
-│   ├── arka-play/    General-purpose web client (MVP)
-│   └── arka-kids/    Child-friendly & neurodiverse-friendly client
-├── backend/          Optional future backend services
-├── community/        Community docs, outreach materials
-└── governance/       Decision-making & contribution guidelines
+arkA/
+├── docs/             # Vision, roadmap, planning, long-form documentation
+├── protocol/         # Schemas, examples, and open formats
+│   ├── schema/       # Core JSON schema definitions
+│   ├── examples/     # Example metadata files
+│   └── extensions/   # HLS, DASH, CMAF, and future extensions
+├── frontend/         # Reference clients
+│   ├── arka-play/    # General-purpose web client (MVP)
+│   └── arka-kids/    # Child-friendly & neurodiverse-friendly client
+├── backend/          # Optional future backend services (not required)
+├── community/        # Community docs, outreach, and contributor guides
+├── governance/       # Decision-making, proposals, contribution standards
+└── hardware/         # Exploratory device concepts
 ```
 
 ---
 
-## ⚡ Quickstart for Developers
+## How to Contribute
 
-### 1. Clone the repo
-```bash
-git clone https://github.com/baconpantsuppercut/arkA
-cd arkA
-```
+1. Read the Manifesto (`docs/manifesto.md`)  
+2. Explore open Discussions:  
+   https://github.com/baconpantsuppercut/arkA/discussions  
+3. Check Issues:  
+   https://github.com/baconpantsuppercut/arkA/issues  
+4. Propose ideas, refine schemas, write docs, or build example clients  
+5. Join architecture discussions and help shape the protocol  
 
-### 2. Install dependencies
+Technical and non-technical contributions are welcome:
+
+- Developers  
+- Designers  
+- Writers  
+- Educators  
+- Parents  
+- Researchers  
+
+Everyone can help shape the early stages.
+
+---
+
+## Development
+
+arkA uses a minimal TypeScript setup at this stage.
+
+### Install
+
 ```bash
 npm install
 ```
 
-### 3. Build the reference client
+### Build
+
 ```bash
 npm run build
 ```
 
-### 4. Run a local dev server
-```bash
-npm run dev
-```
-
-### 5. View sample media metadata  
-See:  
-```
-protocol/examples/
-```
-
 ---
 
-## 🤝 Contributing
-
-1. Read the [Manifesto](docs/manifesto.md)  
-2. Join active [Discussions](../../discussions)  
-3. Review open [Issues](../../issues)  
-4. Propose ideas, user stories, schemas, or PRs  
-5. Participate even if you're not a developer — writers, educators, designers, parents welcome
-
-**No minimum skill level required.**
-
----
-
-## 🚫 What arkA Is *Not*
-
-To avoid confusion:
-
-- ❌ Not a YouTube competitor  
-- ❌ Not a platform  
-- ❌ Not a startup  
-- ❌ Not cryptocurrency or token-based  
-- ❌ Not a "decentralized video site"  
-
-arkA is a **protocol layer** — like RSS for video.
-
-Anyone can build on top of it.
-
----
-
-## 📜 License
-
-See [LICENSE](LICENSE).  
-arkA is open-source and may be forked, remixed, and extended.
-
----
-
-## ✨ Vision
-
-arkA exists to restore human sovereignty over video — while enabling a healthier digital future for creators, communities, children, and neurodiverse minds.
-
----
-
-## 🛠 Build Status & Badges
+## Status & Project Badges
 
 [![Build Reference Client](https://github.com/baconpantsuppercut/arkA/actions/workflows/build.yml/badge.svg)](https://github.com/baconpantsuppercut/arkA/actions)
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 ![Status: Phase 0](https://img.shields.io/badge/Status-Phase%200-yellow.svg)
 ![Discussions: Open](https://img.shields.io/badge/Discussions-Open-green.svg)
+
+---
+
+## License
+
+See `LICENSE`.
+
+arkA is fully open-source and may be forked, remixed, or extended under the license terms.
+
+---
+
+## Vision Statement
+
+arkA exists to restore digital sovereignty to creators and to build a healthier future for video — from open creators to children on both sides of the neurological spectrum.  
