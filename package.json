@@ -1,13 +1,16 @@
 {
-  "name": "arka",
+  "name": "arka-reference-client",
   "version": "0.1.0",
-  "private": true,
-  "description": "arkA — open video protocol and reference clients",
+  "description": "Reference client for the arkA video protocol",
   "scripts": {
-    "validate:examples": "node ./scripts/validate-examples.mjs"
+    "build": "vite build",
+    "dev": "vite"
   },
-  "type": "module",
   "dependencies": {
-    "ajv": "^8.17.1"
+    "ajv": "^8.12.0",
+    "ajv-formats": "^2.1.1"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
   }
 }
