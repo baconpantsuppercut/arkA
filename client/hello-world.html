@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>arkA — Hello World Client</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #eee;
+      padding: 40px;
+      max-width: 700px;
+      margin: auto;
+    }
+    .video-box {
+      margin-top: 30px;
+      padding: 20px;
+      border: 1px solid #444;
+      border-radius: 8px;
+      background: #1a1a1a;
+    }
+    video {
+      width: 100%;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+    pre {
+      background: #000;
+      padding: 10px;
+      border-radius: 6px;
+      color: #0f0;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>arkA — Hello World</h1>
+  <p>
+    This is the first minimal arkA client.  
+    It loads a <code>video.json</code> metadata file and displays:
+  </p>
+
+  <ul>
+    <li>Title</li>
+    <li>Description</li>
+    <li>Thumbnail</li>
+    <li>Source video URL</li>
+  </ul>
+
+  <div id="output" class="video-box">Loading…</div>
+
+  <script>
+    async function loadVideo() {
+      try {
+        const res = await fetch("../examples/video.json");
+        const data = await res.json();
+
+        document.getElementById("output").innerHTML = `
+          <h2>${data.title}</h2>
+          <p>${data.description}</p>
+          <img src="${data.thumbnail}" alt="thumbnail" style="max-width:100%;border-radius:8px;">
+          
+          <video controls>
+            <source src="${data.sources[0].url}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+
+          <h3>Raw Metadata</h3>
+          <pre>${JSON.stringify(data, null, 2)}</pre>
+        `;
+
+      } catch (err) {
+        document.getElementById("output").innerHTML =
+          "<p style='color:red;'>Error loading metadata.</p>";
+      }
+    }
+
+    loadVideo();
+  </script>
+
+</body>
+</html>
