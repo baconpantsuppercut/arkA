@@ -1,16 +1,13 @@
 {
-  "name": "arka-reference-client",
+  "name": "arka",
   "version": "0.1.0",
-  "description": "Reference client for the arkA video protocol",
+  "private": true,
+  "description": "arkA – an open video protocol (metadata, indexes, and reference clients).",
   "scripts": {
-    "build": "vite build",
-    "dev": "vite"
-  },
-  "dependencies": {
-    "ajv": "^8.12.0",
-    "ajv-formats": "^2.1.1"
+    "build": "tsc -p tsconfig.json",
+    "check": "tsc -p tsconfig.json --noEmit"
   },
   "devDependencies": {
-    "vite": "^5.0.0"
+    "typescript": "^5.5.0"
   }
 }
