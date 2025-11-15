@@ -1,32 +1,25 @@
-name: Deploy arkA Reference Client
+name: Deploy Reference Client
 
 on:
   push:
-    branches: [ "main" ]
-    paths:
-      - "client/**"
+    branches: ["main"]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
+      - name: Install dependencies
+        run: npm install
 
-      - name: Install + Build
-        run: |
-          cd client
-          npm install
-          npm run build
+      - name: Build client
+        run: npm run build
 
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
+        uses: actions/upload-pages-artifact@v3
         with:
-          branch: gh-pages
-          folder: client/dist
+          path: client/dist
+
+      - name: Publish
+        uses: actions/deploy-pages@v4
