@@ -1,24 +1,31 @@
-# Contributing to Arka
+# Contributing to arkA
 
-Thank you for your interest in Arka.
+Thank you for your interest in contributing to arkA!
 
-Right now, contributions are especially welcome in the form of:
+## How to Contribute
+1. Fork the repository.
+2. Create a branch: `feature/your-feature-name`.
+3. Make your changes—keep them focused and clean.
+4. Add or update docs if relevant.
+5. Commit with a clear message: `feat: add new schema field for kids-mode`.
+6. Open a Pull Request; link any relevant Issues or Discussions.
 
-- Feedback on `docs/vision.md` and `docs/manifesto.md`
-- Ideas and comments on `protocol/specification.md`
-- UX sketches or flows for:
-  - `frontend/arka-play`
-  - `frontend/arka-kids`
-- Use-case descriptions in `community/use-cases.md`
+## Code Style
+- Use 2-space indentation.
+- JSON files should be pretty-printed with 2 spaces.
+- JavaScript should follow standard lint rules.
+- Schema changes require a draft in `/docs/extensions/` and an example file in `/examples/`.
 
-## How to contribute
+## Documentation
+- Update `/README.md` and `/docs/roadmap.md` if your change affects project direction.
+- Keep explanations clear and minimal — let beginners read and understand quickly.
 
-1. Fork the repo.
-2. Create a branch for your changes.
-3. Make your edits or additions.
-4. Open a Pull Request with a clear description.
+## Reviews & Merge
+- At least one other contributor must approve.
+- Builds must pass (see CI badge).
+- Changes should be non-breaking unless marked `BREAKING CHANGE`.
 
-- Review the manifesto and leave a comment in Discussions.
-- Choose one “good first issue” and add a comment “I’ll work on this”.
-- Propose video schema fields in protocol/video.schema.json (draft).
-- Share the project with a friend — builders + creators welcome.
+## Getting Help
+See the Discussions tab for help, design conversations, and feature ideas.
+
+Thanks for helping build the future of video with arkA!
