@@ -2,28 +2,33 @@ name: CI
 
 on:
   push:
-    branches: ["main", "master"]
+    branches:
+      - main
   pull_request:
-    branches: ["main", "master"]
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+    - uses: actions/checkout@v4
 
-      - name: Use Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "22"
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
 
-      - name: Install dependencies
-        run: npm install
+    - name: Install dependencies
+      run: npm install
 
-      - name: TypeScript build
-        run: npm run build
+    - name: Lint JSON schema
+      run: npm run lint:schema
 
-      - name: TypeScript check (no emit)
-        run: npm run check
+    - name: Build client
+      run: npm run build
+
+    - name: Deploy to GitHub Pages
+      if: github.ref == 'refs/heads/main'
+      run: npm run deploy
