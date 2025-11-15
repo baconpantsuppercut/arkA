@@ -1,0 +1,154 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://arka.video/schema/video.schema.v1.json",
+  "title": "arkA Video Metadata (v1)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "title", "creator", "duration_seconds", "sources"],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "arka-video-1.0"
+    },
+    "id": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "description": {
+      "type": "string"
+    },
+    "creator": {
+      "type": "object",
+      "required": ["name"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string", "minLength": 1 },
+        "channel_url": { "type": "string", "format": "uri" },
+        "avatar_url": { "type": "string", "format": "uri" }
+      }
+    },
+    "duration_seconds": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "published_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "categories": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "languages": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "audio": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "subtitles": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "thumbnails": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["url"],
+        "properties": {
+          "url": { "type": "string", "format": "uri" },
+          "width": { "type": "number" },
+          "height": { "type": "number" }
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["type"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["file", "hls", "dash", "cmaf", "ipfs", "arweave", "torrent"]
+          },
+          "label": { "type": "string" },
+          "url": { "type": "string" },
+          "manifest": { "type": "string" },
+          "format": { "type": "string" },
+          "codecs": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "bitrate_kbps": { "type": "number" },
+          "resolution": { "type": "string" },
+          "drm": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "type": { "type": "string" },
+              "license_url": { "type": "string" }
+            }
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "family_safety": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "is_safe": { "type": "boolean" },
+        "age_rating": { "type": "string" },
+        "notes": { "type": "string" }
+      }
+    },
+    "accessibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "has_captions": { "type": "boolean" },
+        "has_audio_description": { "type": "boolean" }
+      }
+    },
+    "stats": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "view_count": { "type": "number" },
+        "like_count": { "type": "number" }
+      }
+    },
+    "license": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": { "type": "string" },
+        "url": { "type": "string", "format": "uri" }
+      }
+    },
+    "extensions": {
+      "type": "object"
+    }
+  }
+}
