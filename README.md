@@ -90,6 +90,15 @@ arkA exists to restore human sovereignty over video,
 while building a healthier digital future for creators, children,  
 and communities worldwide.
 
+## Development & Build
+
+arkA uses a minimal TypeScript setup for now.
+
+### Install dependencies
+
+```bash
+npm install
+
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 [![Status: Phase 0](https://img.shields.io/badge/Status-Phase%200-yellow.svg)](#)
 [![Discussions: Open](https://img.shields.io/badge/Discussions-Open-green.svg)](#)
