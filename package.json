@@ -1,13 +1,15 @@
 {
-  "name": "arka",
+  "name": "arka-client",
   "version": "0.1.0",
-  "private": true,
-  "description": "arkA – an open video protocol (metadata, indexes, and reference clients).",
+  "description": "Reference static web client for arkA protocol",
   "scripts": {
-    "build": "tsc -p tsconfig.json",
-    "check": "tsc -p tsconfig.json --noEmit"
+    "lint:schema": "ajv validate -s schema/video.json -d examples/*.json",
+    "build": "rollup -c",
+    "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
-    "typescript": "^5.5.0"
+    "ajv": "^8.0.0",
+    "rollup": "^3.0.0",
+    "gh-pages": "^5.0.0"
   }
 }
