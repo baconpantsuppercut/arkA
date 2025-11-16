@@ -1,57 +1,52 @@
 /* eslint-disable no-console */
 
-import fs from "node:fs/promises";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
-import Ajv from "ajv";
+const fs = require("fs");
+const path = require("path");
+const Ajv = require("ajv").default;
+const addFormats = require("ajv-formats");
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// AJV instance with formats enabled
+const ajv = new Ajv({
+  allErrors: true,
+  strict: false
+});
+addFormats(ajv);
 
-async function main() {
-  console.log("Validating example files against schema...");
+// Load the video schema
+const schemaPath = path.join(__dirname, "..", "schema", "video.schema.json");
+const schemaRaw = fs.readFileSync(schemaPath, "utf8");
+const schema = JSON.parse(schemaRaw);
 
-  const schemaPath = path.join(__dirname, "..", "schema", "video.schema.json");
-  const schemaText = await fs.readFile(schemaPath, "utf8");
-  const schema = JSON.parse(schemaText);
+const validate = ajv.compile(schema);
 
-  const ajv = new Ajv({ allErrors: true });
-  const validate = ajv.compile(schema);
+// Only validate the video example files, not index.json
+const examplesDir = path.join(__dirname, "..", "examples");
+const exampleFiles = fs
+  .readdirSync(examplesDir)
+  .filter((file) => file.startsWith("video-") && file.endsWith(".json"));
 
-  const examplesDir = path.join(__dirname, "..", "examples");
-  const files = await fs.readdir(examplesDir);
+console.log("Validating example files against schema...");
 
-  let allValid = true;
+let hasError = false;
 
-  for (const file of files) {
-    // Only validate video-* examples; skip index.json and any other non-video files
-    if (!file.startsWith("video-") || !file.endsWith(".json")) {
-      continue;
-    }
+for (const file of exampleFiles) {
+  const fullPath = path.join(examplesDir, file);
+  const raw = fs.readFileSync(fullPath, "utf8");
+  const data = JSON.parse(raw);
 
-    const fullPath = path.join(examplesDir, file);
-    const dataText = await fs.readFile(fullPath, "utf8");
-    const data = JSON.parse(dataText);
+  const valid = validate(data);
 
-    const ok = validate(data);
-
-    if (!ok) {
-      allValid = false;
-      console.error(`❌ ${file} is INVALID:`);
-      console.error(validate.errors);
-    } else {
-      console.log(`✅ ${file} is valid.`);
-    }
-  }
-
-  if (!allValid) {
-    process.exitCode = 1;
+  if (valid) {
+    console.log(`✅ ${file} is valid.`);
   } else {
-    console.log("✅ All video example files are valid.");
+    hasError = true;
+    console.log(`❌ ${file} is INVALID:`);
+    console.log(validate.errors);
   }
 }
 
-main().catch((err) => {
-  console.error(err);
-  process.exitCode = 1;
-});
+if (hasError) {
+  process.exit(1);
+} else {
+  console.log("✅ All example video files are valid.");
+}
