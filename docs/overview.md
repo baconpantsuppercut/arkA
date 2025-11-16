@@ -22,7 +22,7 @@ The protocol defines the shared language between all clients, services, and stor
 
 Arka will need versioned schemas for:
 
-**Video Object**  
+## Video Object
 - id  
 - title  
 - description  
@@ -35,7 +35,7 @@ Arka will need versioned schemas for:
 - content flags  
 - created_at  
 
-**Creator/Channel Object**  
+## Creator/Channel Object
 - id  
 - display_name  
 - avatar  
@@ -43,7 +43,7 @@ Arka will need versioned schemas for:
 - associated video ids  
 - public keys/wallet addresses (optional)  
 
-**Playlist/Collection Object**  
+## Playlist/Collection Object
 - id  
 - title  
 - description  
@@ -297,4 +297,3 @@ The minimal system includes:
 - documentation and contribution guide  
 
 This allows the community to immediately begin experimenting, contributing, and expanding the ecosystem.
-
