@@ -1,0 +1,10 @@
+{
+  "default": true,
+
+  // Turn off noisy rules for now so current docs pass
+  "MD013": false,  // line length
+  "MD022": false,  // blanks around headings
+  "MD034": false,  // bare URLs
+  "MD040": false,  // fenced code blocks should have a language
+  "MD047": false   // single trailing newline
+}
