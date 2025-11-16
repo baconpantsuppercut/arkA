@@ -1,35 +1,44 @@
-const js = require("@eslint/js");
+// eslint.config.js (Flat config for ESLint 9)
+import js from "@eslint/js";
+import globals from "globals";
 
-const baseConfig = js.configs.recommended;
+export default [
 
-module.exports = [
-  baseConfig,
+  // ---------------------------
+  // GLOBAL: Base rules
+  // ---------------------------
+  js.configs.recommended,
+
+  // ---------------------------
+  // Browser Client Code
+  // ---------------------------
   {
-    files: ["client/**/*.js", "scripts/**/*.js"],
-    ignores: [
-      "dist/**",
-      "node_modules/**",
-      "scripts/validate-schema.js"
-    ],
+    files: ["client/**/*.js"],
     languageOptions: {
-      ecmaVersion: 2020,
-      sourceType: "script",
+      sourceType: "module",
       globals: {
-        // Browser-side globals
-        window: "readonly",
-        document: "readonly",
-        console: "readonly",
-
-        // Node-side globals for scripts
-        process: "readonly",
-        module: "readonly",
-        require: "readonly",
-        __dirname: "readonly",
-        __filename: "readonly"
-      }
+        ...globals.browser,   // document, window, fetch, console, etc.
+      },
     },
-    rules: {
-      "no-console": "off"
-    }
-  }
+  },
+
+  // ---------------------------
+  // Node.js Scripts
+  // ---------------------------
+  {
+    files: ["scripts/**/*.js"],
+    languageOptions: {
+      sourceType: "commonjs",
+      globals: {
+        ...globals.node,      // require, process, console, __dirname
+      },
+    },
+  },
+
+  // ---------------------------
+  // Ignore build output
+  // ---------------------------
+  {
+    ignores: ["dist/**"],
+  },
 ];
