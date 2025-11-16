@@ -1,5 +1,4 @@
 {
-{
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://arka.video/schema/video.schema.json",
   "title": "arkA Video Metadata Schema",
@@ -54,7 +53,8 @@
             "description": "Direct URI or reference pointer."
           }
         },
-        "required": ["storageType", "uri"]
+        "required": ["storageType", "uri"],
+        "additionalProperties": false
       }
     },
 
@@ -65,7 +65,8 @@
         "hls": { "type": "string" },
         "dash": { "type": "string" },
         "cmaf": { "type": "string" }
-      }
+      },
+      "additionalProperties": false
     },
 
     "creator": {
@@ -75,7 +76,8 @@
         "name": { "type": "string" },
         "avatar": { "type": "string" },
         "contact": { "type": "string" }
-      }
+      },
+      "additionalProperties": false
     },
 
     "safety": {
@@ -94,9 +96,11 @@
           "type": "string",
           "description": "Notes for neurodiverse children (flashing lights, loud sounds, chaos elements)."
         }
-      }
+      },
+      "additionalProperties": false
     }
   },
 
-  "required": ["id", "title", "sources"]
+  "required": ["id", "title", "sources"],
+  "additionalProperties": false
 }
