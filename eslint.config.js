@@ -1,13 +1,39 @@
-// eslint.config.js
-// Flat config for ESLint 9, using CommonJS so Node can load it without "type": "module".
+import js from "@eslint/js";
 
-const js = require("@eslint/js");
+/**
+ * ESLint flat config for arkA
+ * - client/**/*.js   -> browser globals (document, window, fetch, console)
+ * - scripts/**/*.js  -> node globals (console, process)
+ */
 
-/** @type {import("eslint").Linter.FlatConfig[]} */
-module.exports = [
+export default [
+  // Base recommended rules
   {
     ...js.configs.recommended,
-    files: ["client/**/*.js", "scripts/**/*.js"],
-    ignores: ["dist/**", "node_modules/**"]
+    files: ["client/**/*.js"],
+    languageOptions: {
+      ecmaVersion: 2021,
+      sourceType: "module",
+      globals: {
+        window: "readonly",
+        document: "readonly",
+        console: "readonly",
+        fetch: "readonly"
+      }
+    }
+  },
+  {
+    files: ["scripts/**/*.js"],
+    languageOptions: {
+      ecmaVersion: 2021,
+      sourceType: "module",
+      globals: {
+        console: "readonly",
+        process: "readonly"
+      }
+    },
+    rules: {
+      // In case recommended set adds browser-only assumptions later
+    }
   }
 ];
