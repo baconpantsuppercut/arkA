@@ -1,29 +1,45 @@
 // scripts/validate-all.js
-import { execSync } from "child_process";
-import fs from "fs";
-import path from "path";
+// Validate only per-video example files against the video schema.
 
-const schema = "schema/video.schema.json";
-const dir = "examples";
+import fs from 'node:fs';
+import path from 'node:path';
+import Ajv from 'ajv';
 
-const files = fs.readdirSync(dir).filter(f => f.endsWith(".json"));
+const ajv = new Ajv({ allErrors: true, strict: false });
 
-let failed = false;
+const schemaPath = path.join('schema', 'video.schema.json');
+const schemaRaw = fs.readFileSync(schemaPath, 'utf-8');
+const schema = JSON.parse(schemaRaw);
+const validate = ajv.compile(schema);
 
-for (const file of files) {
-  console.log(`\nValidating ${file}...`);
-  try {
-    execSync(`npx ajv validate -s ${schema} -d ${dir}/${file} --strict=false`, {
-      stdio: "inherit"
-    });
-  } catch (err) {
-    failed = true;
+const examplesDir = 'examples';
+
+// Only validate files that start with "video-" and end with ".json"
+const exampleFiles = fs
+  .readdirSync(examplesDir)
+  .filter((f) => f.startsWith('video-') && f.endsWith('.json'));
+
+let hasErrors = false;
+
+for (const file of exampleFiles) {
+  const fullPath = path.join(examplesDir, file);
+  console.log(`Validating ${file}...`);
+
+  const raw = fs.readFileSync(fullPath, 'utf-8');
+  const data = JSON.parse(raw);
+
+  const valid = validate(data);
+  if (!valid) {
+    hasErrors = true;
+    console.log(`${fullPath} invalid`);
+    console.log(validate.errors);
+    console.log();
   }
 }
 
-if (failed) {
-  console.error("\n❌ Some example files FAILED validation.");
+if (hasErrors) {
+  console.error('❌ Some example files FAILED validation.');
   process.exit(1);
 } else {
-  console.log("\n✅ All example files are valid!");
+  console.log('✅ All per-video example files passed validation.');
 }
