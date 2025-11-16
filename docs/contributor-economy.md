@@ -126,7 +126,7 @@ This preserves neutrality while enabling growth.
 
 ---
 
-# Summary
+## Summary
 
 arkA itself will remain free and unowned forever.  
 But contributors can earn money through:
