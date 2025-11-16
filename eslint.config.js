@@ -1,35 +1,45 @@
 import js from "@eslint/js";
 
 export default [
-  // Global settings for browser JS (client)
+  // Base recommended rules
+  js.configs.recommended,
+
+  // Browser/client code
   {
     files: ["client/**/*.js"],
     languageOptions: {
+      ecmaVersion: 2020,
       sourceType: "module",
       globals: {
+        window: "readonly",
         document: "readonly",
         console: "readonly",
         fetch: "readonly",
-      },
+        URL: "readonly"
+      }
     },
     rules: {
-      ...js.configs.recommended.rules,
-    },
+      // We *want* console in a small demo client
+      "no-console": "off"
+    }
   },
 
-  // Node scripts override (fixes __dirname error)
+  // Node scripts (validation, etc.)
   {
     files: ["scripts/**/*.js"],
     languageOptions: {
-      sourceType: "module",
+      ecmaVersion: 2020,
+      sourceType: "commonjs",
       globals: {
-        console: "readonly",
+        require: "readonly",
+        module: "readonly",
+        __dirname: "readonly",
         process: "readonly",
-        __dirname: "readonly",   // <-- THIS FIXES YOUR ERROR
-      },
+        console: "readonly"
+      }
     },
     rules: {
-      ...js.configs.recommended.rules,
-    },
+      "no-console": "off"
+    }
   }
 ];
