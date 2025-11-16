@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.0",
-    "@rollup/plugin-node-resolve": "^15.2.0",
+    "@rollup/plugin-node-resolve": "^15.0.0",
     "ajv": "^8.0.0",
     "eslint": "^9.0.0",
     "gh-pages": "^5.0.0",
