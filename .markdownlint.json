@@ -1,11 +1,14 @@
 {
   "default": true,
-  "ignores": [
-    "node_modules",
-    "**/node_modules/**",
-    "dist",
-    "build"
-  ],
-  "MD013": false,  // Disable "line-length" (optional)
-  "MD033": false   // Disable "inline HTML" (optional)
+
+  "MD009": false,
+  "MD010": false,
+  "MD013": false,
+  "MD022": false,
+  "MD032": false,
+  "MD033": false,
+  "MD034": false,
+  "MD040": false,
+  "MD045": false,
+  "MD047": false
 }
