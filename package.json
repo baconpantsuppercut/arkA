@@ -2,21 +2,22 @@
   "name": "arka-client",
   "version": "0.1.0",
   "description": "Reference static web client for the arkA protocol",
+  "private": true,
   "scripts": {
     "dev": "vite",
     "build": "rollup -c",
-    "validate": "node scripts/validate-all.js",
     "lint": "eslint client/**/*.js scripts/**/*.js",
+    "validate": "node scripts/validate-all.js",
     "lint:schema": "npm run validate",
     "test": "echo \"No tests yet\""
   },
   "devDependencies": {
     "ajv": "^8.17.1",
-    "eslint": "^9.12.0",
+    "eslint": "^9.39.1",
     "markdownlint-cli": "^0.41.0",
-    "@rollup/plugin-node-resolve": "^15.2.3",
-    "@rollup/plugin-commonjs": "^25.0.8",
     "rollup": "^4.24.0",
+    "@rollup/plugin-node-resolve": "^15.2.4",
+    "@rollup/plugin-commonjs": "^25.0.8",
     "vite": "^5.4.0"
   }
 }
