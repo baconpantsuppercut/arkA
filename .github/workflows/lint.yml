@@ -2,9 +2,9 @@ name: Lint Code
 
 on:
   push:
-    branches: [ main ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ main ]
+    branches: [ "main" ]
 
 jobs:
   lint:
@@ -26,4 +26,4 @@ jobs:
         run: npm run lint
 
       - name: Lint Markdown
-        run: npx markdownlint "**/*.md"
+        run: npx markdownlint-cli "**/*.md"
