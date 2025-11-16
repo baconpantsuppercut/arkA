@@ -4,6 +4,7 @@
   "title": "arkA Video Metadata Schema",
   "description": "Core metadata structure for arkA protocol v0.1",
   "type": "object",
+  "additionalProperties": false,
 
   "properties": {
     "id": {
@@ -34,6 +35,11 @@
 
     "duration": {
       "type": "number",
+      "description": "Total duration in seconds (legacy alias). Prefer durationSeconds."
+    },
+
+    "durationSeconds": {
+      "type": "number",
       "description": "Total duration in seconds."
     },
 
@@ -62,9 +68,18 @@
       "type": "object",
       "description": "Optional segmented streaming formats.",
       "properties": {
-        "hls": { "type": "string" },
-        "dash": { "type": "string" },
-        "cmaf": { "type": "string" }
+        "hls": {
+          "type": "string",
+          "description": "URL to an HLS (m3u8) manifest."
+        },
+        "dash": {
+          "type": "string",
+          "description": "URL to a DASH (MPD) manifest."
+        },
+        "cmaf": {
+          "type": "string",
+          "description": "Optional CMAF packaging identifier or manifest."
+        }
       },
       "additionalProperties": false
     },
@@ -73,9 +88,18 @@
       "type": "object",
       "description": "Creator identity block.",
       "properties": {
-        "name": { "type": "string" },
-        "avatar": { "type": "string" },
-        "contact": { "type": "string" }
+        "name": {
+          "type": "string",
+          "description": "Display name of the creator or channel."
+        },
+        "avatar": {
+          "type": "string",
+          "description": "URL to avatar image."
+        },
+        "contact": {
+          "type": "string",
+          "description": "Optional contact URL or handle for the creator."
+        }
       },
       "additionalProperties": false
     },
@@ -86,11 +110,13 @@
       "properties": {
         "rating": {
           "type": "string",
-          "enum": ["G", "PG", "13+", "18+"]
+          "enum": ["G", "PG", "13+", "18+"],
+          "description": "Coarse content rating."
         },
         "overstimulation": {
           "type": "string",
-          "enum": ["low", "medium", "high"]
+          "enum": ["low", "medium", "high"],
+          "description": "Rough gauge of visual/audio intensity."
         },
         "sensoryNotes": {
           "type": "string",
@@ -101,6 +127,5 @@
     }
   },
 
-  "required": ["id", "title", "sources"],
-  "additionalProperties": false
+  "required": ["id", "title", "sources"]
 }
