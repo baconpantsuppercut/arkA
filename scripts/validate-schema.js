@@ -1,43 +1,53 @@
-#!/usr/bin/env node
+// Simple schema validation script using AJV
+// Validates all JSON files in /examples against schema/video.schema.json
 
-// Simple schema validator for arkA using AJV
-// Validates all example *.json files against schema/video.json
+import Ajv from "ajv";
+import fs from "fs";
+import path from "path";
+import url from "url";
 
-const Ajv = require("ajv");
-const fs = require("fs");
-const path = require("path");
+const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-const ajv = new Ajv({ allErrors: true });
-const schema = require("../schema/video.json");
+const ajv = new Ajv({ allErrors: true, strict: false });
 
-const examplesDir = path.join(__dirname, "../examples");
+// Path to the main arkA video schema
+const schemaPath = path.join(__dirname, "..", "schema", "video.schema.json");
+const schemaRaw = fs.readFileSync(schemaPath, "utf8");
+const schema = JSON.parse(schemaRaw);
 
-let failed = false;
+const validate = ajv.compile(schema);
 
-console.log("🔍 Validating example metadata files...\n");
+// Directory containing example metadata files
+const examplesDir = path.join(__dirname, "..", "examples");
 
-fs.readdirSync(examplesDir).forEach((file) => {
-  if (file.endsWith(".json")) {
-    const fullPath = path.join(examplesDir, file);
-    const jsonData = JSON.parse(fs.readFileSync(fullPath, "utf8"));
+const files = fs
+  .readdirSync(examplesDir)
+  .filter((f) => f.endsWith(".json"));
 
-    const validate = ajv.compile(schema);
-    const valid = validate(jsonData);
+let hasErrors = false;
 
-    if (valid) {
-      console.log(`✔ ${file} is valid`);
-    } else {
-      failed = true;
-      console.log(`❌ ${file} FAILED`);
-      console.log(validate.errors);
-      console.log("\n");
-    }
+for (const file of files) {
+  const fullPath = path.join(examplesDir, file);
+  const dataRaw = fs.readFileSync(fullPath, "utf8");
+  const data = JSON.parse(dataRaw);
+
+  const valid = validate(data);
+
+  if (!valid) {
+    hasErrors = true;
+    console.error(`❌ ${file} is INVALID:`);
+    console.error(validate.errors);
+    console.error("----");
+  } else {
+    console.log(`✅ ${file} is valid.`);
   }
-});
+}
 
-if (failed) {
-  console.log("❗ Schema validation failed.\n");
+if (hasErrors) {
+  console.error("Schema validation failed.");
   process.exit(1);
 } else {
-  console.log("\n🎉 All example files validated successfully!");
+  console.log("All example files are valid.");
+  process.exit(0);
 }
