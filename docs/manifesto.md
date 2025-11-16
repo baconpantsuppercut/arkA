@@ -38,7 +38,7 @@ arkA supports:
 
 ---
 
-## 3. Children and neurodiverse individuals deserve better digital environments.
+## 3. Children and neurodiverse individuals deserve better digital environments
 
 arkA Kids is a priority, not an afterthought.
 
