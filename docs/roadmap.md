@@ -6,7 +6,7 @@ The focus is on **simplicity**, **modularity**, and **approachability** — so c
 
 ---
 
-# Phase 0 — Foundation (Current)
+## Phase 0 — Foundation (Current)
 
 ### 0.1 — Clarify What arkA *Is*
 - A **video metadata + indexing protocol** (like RSS, but for video).  
@@ -27,7 +27,7 @@ The focus is on **simplicity**, **modularity**, and **approachability** — so c
 
 ---
 
-# Phase 1 — Protocol Minimum Viable Draft
+## Phase 1 — Protocol Minimum Viable Draft
 
 ### 1.1 — Core Metadata Schema (JSON)
 A simple open schema that defines *what a video is*:
@@ -66,7 +66,7 @@ Defines:
 
 ---
 
-# Phase 2 — Reference Client (First Working “Reader”)
+## Phase 2 — Reference Client (First Working “Reader”)
 
 ### 2.1 — Static Web Client (HTML/JS Only)
 A simple, dependency-light viewer that can:
@@ -98,7 +98,7 @@ A minimal web form that lets a creator:
 
 ---
 
-# Phase 3 — Ecosystem Seeds
+## Phase 3 — Ecosystem Seeds
 
 ### 3.1 — Extensions System
 Allow modular add-ons such as:
@@ -129,7 +129,7 @@ Simple open governance:
 
 ---
 
-# Phase 4 — Specialized Flows (arkA Kids & arkA Aspire)
+## Phase 4 — Specialized Flows (arkA Kids & arkA Aspire)
 
 ### 4.1 — arkA Kids Layer
 Additional schema fields:
@@ -153,7 +153,7 @@ For gifted / high-potential learners:
 
 ---
 
-# Phase 5 — Long-Term Research Tracks
+## Phase 5 — Long-Term Research Tracks
 
 ### 5.1 — Safe Device Mode
 Future exploration of:
@@ -168,7 +168,7 @@ Collaboration with “sentient UI” / gesture-driven / adaptive UI devs.
 
 ---
 
-# Status Summary (v0.2)
+## Status Summary (v0.2)
 
 **Complete:**  
 - Project structure  
