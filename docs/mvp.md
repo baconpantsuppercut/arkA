@@ -25,6 +25,9 @@ Stored at:
 A JSON file listing all videos.
 
 Example:
+```md
+Some text
+
 ```json
 [
   {
