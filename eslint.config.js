@@ -1,39 +1,32 @@
 import js from "@eslint/js";
 
-/**
- * ESLint flat config for arkA
- * - client/**/*.js   -> browser globals (document, window, fetch, console)
- * - scripts/**/*.js  -> node globals (console, process)
- */
-
+/** @type {import("eslint").Linter.FlatConfig[]} */
 export default [
-  // Base recommended rules
   {
+    // Base recommended rules
     ...js.configs.recommended,
-    files: ["client/**/*.js"],
+
+    // Ignore build artifacts
+    ignores: ["dist/**", "node_modules/**"],
+
     languageOptions: {
-      ecmaVersion: 2021,
+      ecmaVersion: 2022,
       sourceType: "module",
+
+      // Tell ESLint which globals exist so "no-undef" stops shouting
       globals: {
+        // Browser globals (client/js/main.js)
         window: "readonly",
         document: "readonly",
+        fetch: "readonly",
         console: "readonly",
-        fetch: "readonly"
-      }
-    }
-  },
-  {
-    files: ["scripts/**/*.js"],
-    languageOptions: {
-      ecmaVersion: 2021,
-      sourceType: "module",
-      globals: {
-        console: "readonly",
-        process: "readonly"
-      }
+
+        // Node globals (scripts/*.js)
+        require: "readonly",
+        module: "readonly",
+        __dirname: "readonly",
+        process: "readonly",
+      },
     },
-    rules: {
-      // In case recommended set adds browser-only assumptions later
-    }
-  }
+  },
 ];
