@@ -1,14 +1,24 @@
 {
-  "id": "video-basic-001",
-  "title": "Basic MP4 example",
-  "description": "Simple MP4 video served over HTTPS.",
+  "id": "video-basic-demo",
+  "title": "Basic MP4 Demo Video",
+  "description": "A simple MP4 video example stored on plain HTTP storage.",
   "createdAt": "2025-01-01T00:00:00Z",
-  "thumbnail": "https://example.com/thumbs/basic.jpg",
-  "duration": 120,
+  "thumbnail": "https://example.com/thumbnails/basic-demo.jpg",
+  "durationSeconds": 93,
   "sources": [
     {
       "storageType": "http",
-      "uri": "https://example.com/videos/basic.mp4"
+      "uri": "https://example.com/videos/basic-demo.mp4"
     }
-  ]
+  ],
+  "creator": {
+    "name": "Example Creator",
+    "avatar": "https://example.com/avatars/example-creator.png",
+    "contact": "mailto:creator@example.com"
+  },
+  "safety": {
+    "rating": "G",
+    "overstimulation": "low",
+    "sensoryNotes": "Calm pacing, no flashing lights, no jump scares."
+  }
 }
