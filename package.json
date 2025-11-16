@@ -1,27 +1,24 @@
 {
   "name": "arka-client",
   "version": "0.1.0",
-  "description": "Reference static web client for the arkA open video protocol",
+  "description": "Reference static web client for the arkA protocol",
   "scripts": {
     "dev": "vite",
     "build": "rollup -c",
-    "validate": "node scripts/validate-examples.mjs",
-    "lint:schema": "ajv validate -s schema/video.schema.json -d examples/*.json --strict=false",
+    "validate": "node scripts/validate-all.js",
+    "lint": "eslint .",
+    "lint:schema": "npm run validate",
+    "test": "echo \"No tests yet\"",
     "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
     "ajv": "^8.0.0",
-    "ajv-cli": "^5.0.0",
+    "eslint": "^9.0.0",
+    "gh-pages": "^5.0.0",
     "rollup": "^3.0.0",
-    "@rollup/plugin-node-resolve": "^15.0.0",
-    "@rollup/plugin-commonjs": "^25.0.0",
-    "vite": "^5.0.0",
-    "gh-pages": "^5.0.0"
-  },
-  "scripts": {
-  "validate": "node scripts/validate-all.js",
-  "lint:schema": "npm run validate",
-  "build": "rollup -c",
-  "dev": "vite"
- }
+    "typescript": "^5.0.0",
+    "vite": "^5.0.0"
+  }
 }
