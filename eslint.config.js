@@ -1,44 +1,45 @@
-// eslint.config.js (Flat config for ESLint 9)
 import js from "@eslint/js";
 import globals from "globals";
 
 export default [
+  // Base: ignore build output
+  {
+    ignores: ["dist/**"]
+  },
 
-  // ---------------------------
-  // GLOBAL: Base rules
-  // ---------------------------
-  js.configs.recommended,
-
-  // ---------------------------
-  // Browser Client Code
-  // ---------------------------
+  // Browser-side client code
   {
     files: ["client/**/*.js"],
     languageOptions: {
       sourceType: "module",
       globals: {
-        ...globals.browser,   // document, window, fetch, console, etc.
-      },
+        ...globals.browser,
+        console: true
+      }
     },
+    rules: {
+      "no-console": "off"
+    }
   },
 
-  // ---------------------------
-  // Node.js Scripts
-  // ---------------------------
+  // Node-side scripts (schema validation, etc.)
   {
     files: ["scripts/**/*.js"],
     languageOptions: {
-      sourceType: "commonjs",
+      sourceType: "module",
       globals: {
-        ...globals.node,      // require, process, console, __dirname
-      },
+        ...globals.node,
+        console: true,
+        process: true
+      }
     },
+    rules: {
+      "no-console": "off"
+    }
   },
 
-  // ---------------------------
-  // Ignore build output
-  // ---------------------------
+  // Fallback (if anything else gets picked up)
   {
-    ignores: ["dist/**"],
-  },
+    ...js.configs.recommended
+  }
 ];
