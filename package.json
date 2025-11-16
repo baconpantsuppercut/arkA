@@ -17,5 +17,11 @@
     "@rollup/plugin-commonjs": "^25.0.0",
     "vite": "^5.0.0",
     "gh-pages": "^5.0.0"
-  }
+  },
+  "scripts": {
+  "validate": "node scripts/validate-all.js",
+  "lint:schema": "npm run validate",
+  "build": "rollup -c",
+  "dev": "vite"
+ }
 }
