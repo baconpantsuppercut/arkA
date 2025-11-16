@@ -1,79 +1,30 @@
 {
   "arka_version": "0.1.0",
-  "created_at": "2025-02-15T00:00:00Z",
-  "title": "Example arkA Index",
-  "description": "A simple example index file showing multiple videos in the arkA protocol.",
+  "created_at": "2025-01-01T00:00:00Z",
   "publisher": {
-    "name": "Example Creator",
-    "id": "creator_001"
+    "name": "arkA Example Publisher",
+    "url": "https://arka.video/example"
   },
   "videos": [
     {
-      "id": "vid001",
-      "title": "Introduction to arkA",
-      "description": "A short explanation of how arkA works.",
-      "thumbnail": "https://example.com/thumbnails/intro.jpg",
-      "duration_seconds": 93,
-      "tags": ["arka", "intro", "protocol"],
-      "sources": [
-        {
-          "type": "mp4",
-          "url": "https://example.com/videos/intro.mp4"
-        },
-        {
-          "type": "hls",
-          "url": "https://example.com/videos/intro.m3u8"
-        }
-      ],
-      "metadata": {
-        "language": "en",
-        "age_rating": "G"
-      }
+      "id": "video-basic",
+      "title": "Basic MP4 Example",
+      "metadataUrl": "./video-basic.json"
     },
     {
-      "id": "vid002",
-      "title": "arkA Kids Demonstration",
-      "description": "A sensory-stable demonstration for child and neurodiverse modes.",
-      "thumbnail": "https://example.com/thumbnails/kids.jpg",
-      "duration_seconds": 210,
-      "tags": ["kids", "neurodiversity", "learning"],
-      "sources": [
-        {
-          "type": "mp4",
-          "url": "https://example.com/videos/kids-demo.mp4"
-        }
-      ],
-      "metadata": {
-        "language": "en",
-        "age_rating": "G",
-        "sensory_profile": {
-          "brightness_level": "low",
-          "motion_level": "stable",
-          "audio_level": "soft"
-        }
-      }
+      "id": "video-hls",
+      "title": "HLS Streaming Example",
+      "metadataUrl": "./video-hls.json"
     },
     {
-      "id": "vid003",
-      "title": "Advanced arkA Architecture Overview",
-      "description": "A deep dive into how arkA clients interpret and display video metadata.",
-      "thumbnail": "https://example.com/thumbnails/architecture.jpg",
-      "duration_seconds": 302,
-      "tags": ["architecture", "schema", "developers"],
-      "sources": [
-        {
-          "type": "mp4",
-          "url": "https://example.com/videos/architecture.mp4"
-        },
-        {
-          "type": "dash",
-          "url": "https://example.com/videos/architecture.mpd"
-        }
-      ],
-      "metadata": {
-        "language": "en",
-        "age_rating": "PG"
-      }
+      "id": "video-dash",
+      "title": "DASH Streaming Example",
+      "metadataUrl": "./video-dash.json"
+    },
+    {
+      "id": "video-kids-lesson",
+      "title": "Kids Neurodiverse Lesson Example",
+      "metadataUrl": "./video-kids-lesson.json"
     }
   ]
 }
