@@ -32,7 +32,7 @@
       "description": "URL pointing to a static thumbnail file."
     },
 
-    "durationSeconds": {
+    "duration": {
       "type": "number",
       "description": "Total duration in seconds."
     },
