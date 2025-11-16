@@ -110,11 +110,10 @@ npm run build
 
 ## Status & Project Badges
 
-[![Build Reference Client](https://github.com/baconpantsuppercut/arkA/actions/workflows/build.yml/badge.svg)](https://github.com/baconpantsuppercut/arkA/actions)
+[![Deploy Reference Client](https://github.com/baconpantsuppercut/arkA/actions/workflows/deploy.yml/badge.svg)](https://github.com/baconpantsuppercut/arkA/actions/workflows/deploy.yml)
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 ![Status: Phase 0](https://img.shields.io/badge/Status-Phase%200-yellow.svg)
 ![Discussions: Open](https://img.shields.io/badge/Discussions-Open-green.svg)
-
 ---
 
 ## License
