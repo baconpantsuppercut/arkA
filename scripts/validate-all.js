@@ -1,52 +1,53 @@
-// scripts/validate-all.js
 /* eslint-env node */
-/* eslint-disable no-console */
 
-const path = require('path');
-const fs = require('fs');
-const Ajv = require('ajv');
+const fs = require("fs");
+const path = require("path");
+const Ajv = require("ajv");
 
-// Ajv instance (non-strict so we can iterate fast during early design)
-const ajv = new Ajv({ allErrors: true, strict: false });
+const ajv = new Ajv({
+  allErrors: true,
+  strict: false, // don't treat warnings (like unknown formats) as fatal
+});
 
-// Load core arkA video schema
-const schemaPath = path.join(__dirname, '..', 'schema', 'video.schema.json');
-const schema = JSON.parse(fs.readFileSync(schemaPath, 'utf8'));
-const validateVideo = ajv.compile(schema);
+const schemaPath = path.join(__dirname, "..", "schema", "video.schema.json");
+const examplesDir = path.join(__dirname, "..", "examples");
 
-// Find example files
-const examplesDir = path.join(__dirname, '..', 'examples');
-const files = fs.readdirSync(examplesDir).filter((f) => f.endsWith('.json'));
+const schemaRaw = fs.readFileSync(schemaPath, "utf8");
+const schema = JSON.parse(schemaRaw);
+const validate = ajv.compile(schema);
 
-console.log('Validating example files against schema...');
+console.log("Validating example files against schema...");
 
-let hasErrors = false;
+// Only validate actual *video* examples, not the collection index.
+const files = fs
+  .readdirSync(examplesDir)
+  .filter(
+    (name) =>
+      name.endsWith(".json") &&
+      name !== "index.json" // <– skip index.json for now; it has a different shape
+  );
+
+let hasError = false;
 
 for (const file of files) {
-  // NOTE:
-  // index.json represents an INDEX of videos, not a single video object.
-  // It will get its own schema later; for now we only validate video-* files.
-  if (file === 'index.json') {
-    continue;
-  }
-
   const fullPath = path.join(examplesDir, file);
-  const raw = fs.readFileSync(fullPath, 'utf8');
-  const data = JSON.parse(raw);
+  const dataRaw = fs.readFileSync(fullPath, "utf8");
+  const data = JSON.parse(dataRaw);
 
-  const valid = validateVideo(data);
-  if (!valid) {
-    hasErrors = true;
-    console.log(`❌ ${file} is INVALID:`);
-    console.log(validateVideo.errors);
+  const ok = validate(data);
+
+  if (!ok) {
+    hasError = true;
+    console.error(`❌ ${file} is INVALID:`);
+    console.error(validate.errors);
   } else {
     console.log(`✅ ${file} is valid.`);
   }
 }
 
-if (hasErrors) {
-  console.log('❌ One or more example files failed validation.');
+if (hasError) {
+  console.error("❌ One or more example files failed validation.");
   process.exit(1);
-} else {
-  console.log('✅ All example video metadata files passed validation.');
 }
+
+console.log("✅ All example files passed validation.");
