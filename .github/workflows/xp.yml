@@ -1,0 +1,80 @@
+name: arkA XP
+
+on:
+  workflow_run:
+    workflows: ["arkA CI"]  # run after your existing CI workflow
+    types: [completed]
+
+permissions:
+  contents: write
+
+jobs:
+  update-xp:
+    # Only run when arkA CI finished successfully
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install jq (for JSON editing)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jq
+
+      - name: Ensure gamification store exists
+        run: |
+          mkdir -p gamification
+          if [ ! -f gamification/contributors.json ]; then
+            echo '{}' > gamification/contributors.json
+          fi
+
+      - name: Update XP for actor
+        env:
+          ACTOR: ${{ github.event.workflow_run.actor.login }}
+        run: |
+          FILE="gamification/contributors.json"
+          USER="$ACTOR"
+          XP_DELTA=10   # XP per successful CI run
+
+          echo "Updating XP for $USER"
+
+          # Get current XP (default 0)
+          CURRENT_XP=$(jq -r --arg u "$USER" '.[$u].xp // 0' "$FILE")
+          if [ "$CURRENT_XP" = "null" ]; then
+            CURRENT_XP=0
+          fi
+
+          NEW_XP=$((CURRENT_XP + XP_DELTA))
+
+          # Simple level formula: 1 level per 50 XP
+          LEVEL=$((NEW_XP / 50))
+
+          # Write back updated data
+          jq --arg u "$USER" --argjson xp "$NEW_XP" --argjson lvl "$LEVEL" '
+            .[$u].xp = $xp
+            | .[$u].level = $lvl
+          ' "$FILE" > "$FILE.tmp" && mv "$FILE.tmp" "$FILE"
+
+          echo "User: $USER"
+          echo "Old XP: $CURRENT_XP"
+          echo "New XP: $NEW_XP (Level $LEVEL)"
+
+      - name: Commit XP changes
+        env:
+          ACTOR: ${{ github.event.workflow_run.actor.login }}
+        run: |
+          git config user.name "arkA XP Bot"
+          git config user.email "actions@github.com"
+
+          git add gamification/contributors.json
+
+          if git diff --cached --quiet; then
+            echo "No XP changes to commit."
+          else
+            git commit -m "Update XP for $ACTOR [skip ci]"
+            git push
+          fi
