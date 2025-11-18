@@ -1,0 +1,50 @@
+name: arkA XP Penalty
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  penalize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Check if last workflow was failing
+        id: ci_status
+        run: |
+          STATUS=$(gh run list --limit 1 --json status,conclusion --jq '.[0].conclusion')
+          echo "status=$STATUS" >> $GITHUB_OUTPUT
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Only penalize if CI failed
+        if: steps.ci_status.outputs.status != 'success'
+        run: |
+          FILE="gamification/contributors.json"
+          USER="${{ github.actor }}"
+          XP_DELTA=-20
+
+          # Load or init
+          if [ ! -f "$FILE" ]; then
+            mkdir -p gamification
+            echo "{}" > "$FILE"
+          fi
+
+          jq --arg user "$USER" --argjson delta "$XP_DELTA" \
+            '.[$user] = (.[$user] // 0) + $delta' \
+            "$FILE" > xp_tmp.json && mv xp_tmp.json "$FILE"
+
+      - name: Commit penalty
+        if: steps.ci_status.outputs.status != 'success'
+        run: |
+          git config user.name "arkA XP Bot"
+          git config user.email "bot@arka.dev"
+          git add gamification/contributors.json
+          git commit -m "Penalty: -20 XP for ${{ github.actor }} (red build merged)"
+          git push
