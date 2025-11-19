@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>arkA MVP – IPFS Video Player</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Basic description for humans + SEO -->
+  <meta
+    name="description"
+    content="arkA MVP client – paste an IPFS CID or URL to play a self-hosted video using the open arkA video protocol idea."
+  />
+
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="brand">
+      <span class="logo-mark">A</span>
+      <span class="brand-text">arkA MVP</span>
+    </div>
+    <p class="tagline">
+      Paste an <strong>IPFS CID</strong> or <strong>IPFS URL</strong> and play your self-hosted video.
+    </p>
+  </header>
+
+  <main class="main">
+    <section class="card">
+      <h1>Play a self-hosted video</h1>
+
+      <form id="cid-form" class="cid-form">
+        <label for="cid-input" class="label">
+          CID or IPFS URL
+        </label>
+        <input
+          id="cid-input"
+          class="input"
+          type="text"
+          autocomplete="off"
+          placeholder="Example: bafybeigdyr... or https://ipfs.io/ipfs/&lt;CID&gt;"
+        />
+
+        <label for="gateway-input" class="label label-inline">
+          IPFS gateway (optional)
+          <span class="hint">(defaults to ipfs.io)</span>
+        </label>
+        <input
+          id="gateway-input"
+          class="input"
+          type="text"
+          autocomplete="off"
+          placeholder="https://ipfs.io/ipfs/"
+        />
+
+        <button type="submit" class="button">
+          ▶ Play video
+        </button>
+
+        <p id="status" class="status" aria-live="polite"></p>
+      </form>
+
+      <div class="video-container">
+        <video
+          id="video-player"
+          class="video"
+          controls
+          playsinline
+        >
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </section>
+
+    <section class="card card-secondary">
+      <h2>What is this?</h2>
+      <p>
+        This is a tiny reference client for <strong>arkA</strong> – an open, host-anywhere video
+        protocol. The idea is:
+      </p>
+      <ul>
+        <li>Video is stored anywhere (IPFS, S3, NAS, Arweave, etc.).</li>
+        <li>The client just needs a <strong>pointer</strong> (like an IPFS CID) to play it.</li>
+        <li>No accounts, no algorithmic feed – just metadata + a lightweight client.</li>
+      </ul>
+      <p class="note">
+        MVP scope: one video at a time, identified by a CID or URL. Later we can add full arkA
+        channel metadata, playlists, captions, and more.
+      </p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>
+      Built for the arkA project –
+      <a href="https://github.com/baconpantsuppercut/arkA" target="_blank" rel="noopener">
+        view the repo on GitHub
+      </a>
+    </small>
+  </footer>
+
+  <script src="./mvp.js" type="module"></script>
+</body>
+</html>
