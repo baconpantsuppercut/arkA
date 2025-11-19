@@ -2,43 +2,34 @@ name: Deploy MVP client
 
 on:
   push:
-    branches: [ main ]
-    paths:
-      - 'client-mvp/**'
-      - '.github/workflows/deploy-mvp.yml'
+    branches: ["main"]
+
+# 👇 This stops the "in progress deployment" error
+concurrency:
+  group: "github-pages"
+  cancel-in-progress: true
 
 permissions:
   contents: read
   pages: write
   id-token: write
 
-concurrency:
-  group: 'pages'
-  cancel-in-progress: true
-
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-
-      - name: Configure Pages
-        uses: actions/configure-pages@v4
-
-      # Upload the static site from client-mvp/
-      - name: Upload MVP client
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: client-mvp
-
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    needs: build
+
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Upload client-mvp as Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./client-mvp
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
