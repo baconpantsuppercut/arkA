@@ -1,11 +1,11 @@
-name: Deploy MVP Client
+name: Deploy MVP client
 
 on:
   push:
     branches: [ main ]
     paths:
-      - "client-mvp/**"
-      - ".github/workflows/deploy-mvp.yml"
+      - 'client-mvp/**'
+      - '.github/workflows/deploy-mvp.yml'
 
 permissions:
   contents: read
@@ -13,48 +13,24 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
-  cancel-in-progress: false
+  group: 'pages'
+  cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
+      - name: Checkout repo
         uses: actions/checkout@v4
 
-      # Build static site output in ./dist
-      - name: Prepare dist folder
-        run: |
-          rm -rf dist
-          mkdir -p dist/client-mvp
+      - name: Configure Pages
+        uses: actions/configure-pages@v4
 
-          # Copy the MVP client as-is
-          cp -R client-mvp/* dist/client-mvp/
-
-          # Simple root index that just redirects to /client-mvp/
-          cat > dist/index.html << 'EOF'
-          <!DOCTYPE html>
-          <html lang="en">
-          <head>
-            <meta charset="UTF-8" />
-            <meta http-equiv="refresh" content="0; url=./client-mvp/" />
-            <title>arkA MVP</title>
-          </head>
-          <body>
-            <p>
-              Redirecting to
-              <a href="./client-mvp/">arkA MVP Client</a>…
-            </p>
-          </body>
-          </html>
-          EOF
-
-      - name: Upload artifact for GitHub Pages
+      # Upload the static site from client-mvp/
+      - name: Upload MVP client
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: client-mvp
 
   deploy:
     environment:
@@ -62,7 +38,6 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build
-
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
