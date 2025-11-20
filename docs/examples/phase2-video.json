@@ -1,0 +1,20 @@
+{
+  "schema_version": "0.0.1",
+  "id": "arka-phase2-announcement",
+  "title": "arkA MVP – Phase 2 Announcement",
+  "description": "The official decentralized announcement video for the arkA protocol MVP.",
+  "created_at": "2025-11-19T00:00:00Z",
+  "creator": {
+    "name": "arkA Project",
+    "channel_id": "arkA-official"
+  },
+  "storage": {
+    "type": "ipfs",
+    "cid": "bafybeigxoxlscrc73aatxasygtxrjsjcwzlvts62gyr76ir5edk5fedq3q",
+    "gateway_urls": [
+      "https://ipfs.io/ipfs/bafybeigxoxlscrc73aatxasygtxrjsjcwzlvts62gyr76ir5edk5fedq3q",
+      "https://cloudflare-ipfs.com/ipfs/bafybeigxoxlscrc73aatxasygtxrjsjcwzlvts62gyr76ir5edk5fedq3q",
+      "https://gateway.pinata.cloud/ipfs/bafybeigxoxlscrc73aatxasygtxrjsjcwzlvts62gyr76ir5edk5fedq3q"
+    ]
+  }
+}
